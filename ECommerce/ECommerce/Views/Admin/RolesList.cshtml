@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">Dashboard</h1>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Dashboard v1</li>
+					</ol>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<h2 class="text-muted text-center">List of Roles</h2>
+			@Html.ActionLink("Create New", "NewRole", "Admin", htmlAttributes: new { @class = "btn btn-primary my-3" })
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Roles List</h3>
+							</div>
+							<div class="card-body">
+								<table id="roles-list" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>
+												@Html.DisplayNameFor(model => model.Id)
+											</th>
+											<th>
+												@Html.DisplayNameFor(model => model.Name)
+											</th>
+
+
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td>
+													@Html.DisplayFor(modelItem => item.Id)
+												</td>
+												<td>
+													@Html.DisplayFor(modelItem => item.Name)
+												</td>
+												@*<td>
+														@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+														@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+														@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+													</td>*@
+											</tr>
+										}
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>
+												@Html.DisplayNameFor(model => model.Id)
+											</th>
+											<th>
+												@Html.DisplayNameFor(model => model.Name)
+											</th>
+
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</table>
+		</div><!-- /.container-fluid -->
+	</section>
+	<!-- /.content -->
+</div>
+
+@section Scripts {
+	<script>
+		$(function () {
+			$('#roles-list').DataTable({
+				"paging": true,
+				"lengthChange": false,
+				"searching": false,
+				"ordering": true,
+				"info": true,
+				"autoWidth": false,
+				"responsive": true,
+			});
+		});
+	</script>
+}
+
